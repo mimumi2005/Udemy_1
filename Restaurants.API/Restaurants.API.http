@@ -1,0 +1,32 @@
+@Restaurants.API_HostAddress = https://localhost:7163
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+
+###
+
+
+
+@routeId=1
+GET {{Restaurants.API_HostAddress}}/api/restaurants/{{routeId}}
+
+###
+
+
+
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/2
+Content-Type: application/json
+
+{
+  "Name": "Spicy delights",
+  "Description": "Fine Dining",
+  "HasDelivery": true
+}
+
+###
+
+
+
+@id=1006
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{{id}}
+
+###
