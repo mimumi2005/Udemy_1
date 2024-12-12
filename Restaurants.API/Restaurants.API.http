@@ -6,19 +6,19 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants
 
 
 
-@routeId=1
+@routeId=12323
 GET {{Restaurants.API_HostAddress}}/api/restaurants/{{routeId}}
 
 ###
 
 
 
-PATCH {{Restaurants.API_HostAddress}}/api/restaurants/2
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1002
 Content-Type: application/json
 
 {
   "Name": "Spicy delights",
-  "Description": "Fine Dining",
+  "Description": "anananan",
   "HasDelivery": true
 }
 
@@ -26,7 +26,7 @@ Content-Type: application/json
 
 
 
-@id=1006
+@id=1007
 DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{{id}}
 
 ###
