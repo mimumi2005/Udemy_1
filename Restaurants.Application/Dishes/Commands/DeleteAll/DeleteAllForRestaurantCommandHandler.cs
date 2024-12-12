@@ -12,13 +12,11 @@ namespace Restaurants.Application.Dishes.Commands.DeleteAll
     {
         public async Task Handle(DeleteAllForRestaurantCommand request, CancellationToken cancellationToken)
         {
-            logger.LogInformation("Deleting all dishes for restaurant: {restaurantId}", request.RestaurantId);
+            logger.LogWarning("Deleting all dishes for restaurant: {restaurantId}", request.RestaurantId);
             var restaurant = await restaurantRepository.GetByIdAsync(request.RestaurantId);
             if (restaurant == null) throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
 
             var dishes = mapper.Map<IEnumerable<Dish>>(restaurant.Dishes);
-
-            if (restaurant == null) throw new NotFoundException(nameof(Restaurant), request.RestaurantId.ToString());
             await dishesRepository.Delete(dishes);
         }
     }
