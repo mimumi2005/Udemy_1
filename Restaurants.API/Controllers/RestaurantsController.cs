@@ -17,23 +17,37 @@ namespace Restaurants.API.Controllers
     [Route("api/restaurants")]
     public class RestaurantsController(IMediator mediator) : ControllerBase
     {
+        /// <summary>
+        /// Gets all restaurants available.
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
         {
             var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
             return Ok(restaurants);
         }
 
+        /// <summary>
+        /// Returns a restaurant by its id.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetById([FromRoute] int id)
+        public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
         {
             var restaurants = await mediator.Send(new GetRestaurantByIdQuery(id));
-            if (restaurants == null) return NotFound();
             return Ok(restaurants);
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <returns></returns>
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateRestaurant(CreateRestaurantCommand command)
         {
 
@@ -43,19 +57,26 @@ namespace Restaurants.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteResturant([FromRoute] int id)
         {
-            var isDeleted = await mediator.Send(new DeleteRestaurantCommand(id));
-            if (isDeleted) return NoContent();
-            return NotFound();
+            await mediator.Send(new DeleteRestaurantCommand(id));
+            return NoContent();
                 
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="command"></param>
+        /// <param name="id"></param>
+        /// <returns></returns>
         [HttpPatch("{id}")]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> EditRestaurant(EditRestaurantCommand command, [FromRoute] int id)
         {
             command.Id = id;
-            var isEdited = await mediator.Send(command);
-            if (isEdited) return NoContent();
-            return NotFound();
+            await mediator.Send(command);
+            return NoContent();
+
 
         }
     }   

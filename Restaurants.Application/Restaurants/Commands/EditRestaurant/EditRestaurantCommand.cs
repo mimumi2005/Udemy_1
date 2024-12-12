@@ -3,7 +3,7 @@ using MediatR;
 
 namespace Restaurants.Application.Restaurants.Commands.EditRestaurant
 {
-    public class EditRestaurantCommand : IRequest<bool>
+    public class EditRestaurantCommand : IRequest
     {
         public int Id { get; set; }
 

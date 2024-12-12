@@ -35,7 +35,29 @@ namespace Restaurants.Infrastructure.Repositiories
 
         public async Task Edit(Restaurant entity)
         {
-            dbContext.Update(entity);
+            // Attach the entity to the DbContext
+            dbContext.Restaurants.Attach(entity);
+
+            // Get the entry for the entity
+            var entry = dbContext.Entry(entity);
+
+            // Iterate through properties of the entity
+            foreach (var property in entry.Properties)
+            {
+                // Exclude the Id (primary key) and check for null values
+                if (property.Metadata.Name == nameof(entity.Id) || property.CurrentValue == null)
+                {
+                    // Mark the property as not modified
+                    property.IsModified = false;
+                }
+                else
+                {
+                    // Mark the property as modified
+                    property.IsModified = true;
+                }
+            }
+
+            // Save changes to the database
             await dbContext.SaveChangesAsync();
         }
     }

@@ -20,15 +20,7 @@ namespace Restaurants.Application.Restaurants.Dtos
                         Street = src.Street
                     }));
 
-            CreateMap<EditRestaurantCommand, Restaurant>()
-                .ForMember(d => d.Name, opt =>
-                opt.MapFrom(src => src.Name))
-                .ForMember(d => d.Description, opt =>
-                opt.MapFrom(src => src.Description))
-                .ForMember(d => d.HasDelivery, opt =>
-                opt.MapFrom(src => src.HasDelivery))
-                .ForMember(d => d.Id, opt =>
-                opt.MapFrom(src => src.Id));
+            CreateMap<EditRestaurantCommand, Restaurant>();
 
 
 
