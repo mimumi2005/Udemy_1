@@ -6,7 +6,7 @@ GET {{Restaurants.API_HostAddress}}/api/restaurants
 
 
 
-@routeId=12323
+@routeId=2
 GET {{Restaurants.API_HostAddress}}/api/restaurants/{{routeId}}
 
 ###
@@ -28,5 +28,27 @@ Content-Type: application/json
 
 @id=1007
 DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{{id}}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurant/2/dishes
+Content-Type: application/json
+
+{
+    "Name": "Sphatteeiii",
+    "Description": "THe classic",
+    "Price": 5,
+    "KiloCalories": 2
+}
+
+###
+
+@restaurantId=1
+@dishId=2
+GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dishId}}
+
+###
+
+DELETE {{Restaurants.API_HostAddress}}/api/restaurant/2/dishes
 
 ###
