@@ -12,6 +12,7 @@ using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 using Restaurants.Application.Restaurants.Commands.EditRestaurant;
 using Microsoft.AspNetCore.Authorization;
 using Restaurants.Domain.Constants;
+using Restaurants.Infrastructure.Authorization;
 
 namespace Restaurants.API.Controllers
 {
@@ -24,6 +25,7 @@ namespace Restaurants.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Policy = PolicyNames.AtLeast2)]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
         {
             var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
@@ -36,6 +38,7 @@ namespace Restaurants.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize(Policy = PolicyNames.HasNationality)]
         public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
         {
             var restaurants = await mediator.Send(new GetRestaurantByIdQuery(id));

@@ -1,22 +1,20 @@
 @Restaurants.API_HostAddress = https://localhost:7163
-@token = CfDJ8CjnroVz0RtDnKXVs0AaCZW7z2UEG5eTQurABGRWZTahDyGXsL_UwK7GOcy8AW90DaXncdQ9KoLR1EHjFG1GtBpw3xmCBC83iSFrrok7gJl9auB_4HE47E_EvifBrGfPr0OFUdCT8nO6CYz5ZRv7DGGCQVxfEQiw4e3Vh7akYk_GMPTWIgbxqKb_ynhUJjruER6w_TAN3KuCeeUXirpXYZ8TVLc9OkGgCY9U9JDW2TVHcmQ6SRPWux806smosii2e9t3FNULcwSYcnt2nRR91PJktc6pFXn8smiZlTXg-kN33JhNsXtCXfZvdDc3y4TEeRO4IrGFSkVTWc5OJKjIExIUys0wGz7uXH8ZcAHIrcI7X5h__lJZhuldVJCkXecDVWCpKWXJ9u3uUc3GCkxDSo9NSCzfx0Fh89sPAYCqT541RSEnl-KEDkuM5YPJLD97fbQDLsN5rmGXKO6AMbv8OKlWkUBCCZW_9hhOJVv8j-6e09PTPlqksuvSj5J3tSHufomNWVINaKmNOqUiexIwBjtMkVSxj9xXDArvSZ6xYca2SAN9L9W1prz-q0DzrVRmYzPX9-gJHM-JLGsbV9XTdJA9Z8ZJ4rw6-rdlNiCB1SHuWZzsOUHe4zezVe597Gc2Yizs5prQRLsV9NGGM_5gKsZJE3VfrBaGcoUMUQ2hX5swQg1dJZfo-Z2pWJYMYttsPqyZs_Tyk-zeZHJZDBYiQWL-OevZqLZi_uncYpLn3-hS7WOfFsAFbfX9G-dYbURYavrn6VMUYkpY2phcbaHa-4pwMjMTOordSxJQ4aEzCtzy
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+@token = CfDJ8CjnroVz0RtDnKXVs0AaCZXxfo2ABcwgsRMCaIDEaXZ1d0Cuc2h5jppJY-YuLhB4sRAbmaJi3a26Jkfd4tVOXZuT3F3GRHlOFumXY086ukKCSW0YNJMY1Ws3hSESHPg2cvZgbfSmeDTFm6xqKMC_TnDR0Q9-uy46RUg2wVvD9PMexinvZCKOTKIXFdTXSor6ylFQHd8jR1Qj1xiNaqLbnysNOR0-0FTE2fcRbYqpfO6LbicFlBnlSaV3iZ582K5_0GSOIO2QTOHSkEGGuw37OGAraxum4EovzYcKN19dvXpZDkDqurs1KAAtXO1gHyxZWPI3TeqJzsTOR5JqIjTfnA-lO1AVgXTohhXd3XJcopgc0ctjs8m4PQN-fHCn27yhojztteLhrPjfobdgyOlgaSMHZOAj5yCWPllnm9Vj6pc6bxNv7as8JekQP_Qk-Dw8d0213XMU_Xxz1HA8xjWoCbLXMYLhvWPmlj5ggmjPbkeh1_4Hco0ZJGY2Wi_bCeeGEJqciwgkPqigUr6FrM8tJ11QxYTdI39PWcB3dcTN7ddWx003FeKXVSYcEwrY603b-9CqPcrJ2Yzn4aFspGdacg8K_zrrzTORsz4vqssqGWVQcc1jiyzmy_MDdyTtZV15VQOw15qVlWU-W9v3ZN_UEFnj_o-x5SPLj9sGifzVNFw2zSeEs3LnDXi81KwggWKyS4U5ieZOY5iQ9OcCyXmlp9_wwVqfqkr1zbuTlQ0yR1sNquyuU7z-nsZF8397Qi5z4Xzlv7feKZqQqtaFR4ldNoPzso9kC9gTQ5Q6DWkoZsGD
+
 ###
 
-
-
-@routeId=2
+@routeId=1004
 GET {{Restaurants.API_HostAddress}}/api/restaurants/{{routeId}}
 Authorization: Bearer {{token}}
 ###
 
 
 
-PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1002
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1005
 Content-Type: application/json
-
+Authorization: Bearer {{token}}
 {
-  "Name": "Spicy delights",
+  "Name": "Spicy sd sdsd eee ",
   "Description": "anananan",
   "HasDelivery": true
 }
@@ -25,8 +23,8 @@ Content-Type: application/json
 
 
 
-@id=1007
-DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{{id}}
+@id=1004
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1004
 
 ###
 
@@ -64,7 +62,7 @@ Content-Type: application/json
 POST {{Restaurants.API_HostAddress}}/api/user/login
 Content-Type: application/json
 {
-    "email": "admin@test.com",
+    "email": "owner@test.com",
     "password": "Abols1234!"
 }
 ###
@@ -77,4 +75,29 @@ Content-Type: application/json
   "HasDelivery": true
 }
 
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "Name": "Owner restaurant",
+  "Description": "test",
+  "Category": "Indian",
+  "HasDelivery": true,
+  "ContactEmail": "info@test.com",
+  "ContactNumber": "555-1234",
+  "City": "New York",
+  "Street": "123 main str",
+  "PostalCode": "10-010"
+}
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
+###
+
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1008
+Authorization: Bearer {{token}}
 ###
