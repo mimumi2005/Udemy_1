@@ -1,7 +1,7 @@
 ﻿
 using FluentValidation;
 using FluentValidation.AspNetCore;
-using Restaurants.Application.Restaurants.Commads.CreateRestaurant;
+using Restaurants.Application.Restaurants.Commads.EditRestaurant;
 using Restaurants.Application.Restaurants.Commands.CreateRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
 
@@ -9,7 +9,7 @@ namespace Restaurants.Application.Restaurants.Commands.CreateRestaurant
 {
     public class CreateRestaurantCommandValidators : AbstractValidator<CreateRestaurantCommand>
     {
-        private readonly List<string> validCategories = ["Indian", "British"];
+        private readonly List<string> validCategories = ["Indian", "British", "German", "Latvian"];
         public CreateRestaurantCommandValidators()
         {
             RuleFor(dto => dto.Name)

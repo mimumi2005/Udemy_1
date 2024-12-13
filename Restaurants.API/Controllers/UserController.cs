@@ -12,7 +12,7 @@ namespace Restaurants.API.Controllers
 
     [ApiController]
     [Route("api/user")]
-    [Authorize]
+
     public class UserController(IMediator mediator) : ControllerBase
     {
 

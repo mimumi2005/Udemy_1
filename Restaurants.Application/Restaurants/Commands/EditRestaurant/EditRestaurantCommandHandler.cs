@@ -10,7 +10,7 @@ using Restaurants.Domain.Interfaces;
 
 namespace Restaurants.Application.Restaurants.Commands.EditRestaurant
 {
-    public class EditRestaurantCommandQuery(IRestaurantRepository restaurantRepository, IMapper mapper, ILogger<EditRestaurantCommandQuery> logger, IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<EditRestaurantCommand>
+    public class EditRestaurantCommandHandler(IRestaurantRepository restaurantRepository, IMapper mapper, ILogger<EditRestaurantCommandHandler> logger, IRestaurantAuthorizationService restaurantAuthorizationService) : IRequestHandler<EditRestaurantCommand>
     {
         public async Task Handle(EditRestaurantCommand request, CancellationToken cancellationToken)
         {
