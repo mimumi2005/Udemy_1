@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Mvc;
 using Restaurants.Application.Restaurants;
-using Restaurants.Application.Restaurants.Commads.CreateRestaurant;
+using Restaurants.Application.Restaurants.Commads.EditRestaurant;
 using Restaurants.Application.Restaurants.Dtos;
 using Restaurants.Application.Restaurants.Queries.GetAllRestaurants;
 using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
@@ -25,10 +25,10 @@ namespace Restaurants.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        [Authorize(Policy = PolicyNames.AtLeast2)]
-        public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
+        //[Authorize(Policy = PolicyNames.AtLeast2)]
+        public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll([FromQuery] GetAllRestaurantsQuery query)
         {
-            var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
+            var restaurants = await mediator.Send(query);
             return Ok(restaurants);
         }
 
@@ -51,7 +51,6 @@ namespace Restaurants.API.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
-        [Authorize(Roles = UserRoles.Owner)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateRestaurant(CreateRestaurantCommand command)
@@ -77,7 +76,7 @@ namespace Restaurants.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPatch("{id}")]
-        [Authorize]
+        [Authorize(Roles = UserRoles.Owner)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> EditRestaurant(EditRestaurantCommand command, [FromRoute] int id)

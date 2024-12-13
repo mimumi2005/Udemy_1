@@ -1,6 +1,5 @@
 @Restaurants.API_HostAddress = https://localhost:7163
-@token = CfDJ8CjnroVz0RtDnKXVs0AaCZXxfo2ABcwgsRMCaIDEaXZ1d0Cuc2h5jppJY-YuLhB4sRAbmaJi3a26Jkfd4tVOXZuT3F3GRHlOFumXY086ukKCSW0YNJMY1Ws3hSESHPg2cvZgbfSmeDTFm6xqKMC_TnDR0Q9-uy46RUg2wVvD9PMexinvZCKOTKIXFdTXSor6ylFQHd8jR1Qj1xiNaqLbnysNOR0-0FTE2fcRbYqpfO6LbicFlBnlSaV3iZ582K5_0GSOIO2QTOHSkEGGuw37OGAraxum4EovzYcKN19dvXpZDkDqurs1KAAtXO1gHyxZWPI3TeqJzsTOR5JqIjTfnA-lO1AVgXTohhXd3XJcopgc0ctjs8m4PQN-fHCn27yhojztteLhrPjfobdgyOlgaSMHZOAj5yCWPllnm9Vj6pc6bxNv7as8JekQP_Qk-Dw8d0213XMU_Xxz1HA8xjWoCbLXMYLhvWPmlj5ggmjPbkeh1_4Hco0ZJGY2Wi_bCeeGEJqciwgkPqigUr6FrM8tJ11QxYTdI39PWcB3dcTN7ddWx003FeKXVSYcEwrY603b-9CqPcrJ2Yzn4aFspGdacg8K_zrrzTORsz4vqssqGWVQcc1jiyzmy_MDdyTtZV15VQOw15qVlWU-W9v3ZN_UEFnj_o-x5SPLj9sGifzVNFw2zSeEs3LnDXi81KwggWKyS4U5ieZOY5iQ9OcCyXmlp9_wwVqfqkr1zbuTlQ0yR1sNquyuU7z-nsZF8397Qi5z4Xzlv7feKZqQqtaFR4ldNoPzso9kC9gTQ5Q6DWkoZsGD
-
+@token = CfDJ8CjnroVz0RtDnKXVs0AaCZXenTrBtu58jXuFIviMCkMl0HX60Q9zdmNq96IEqLkqzGaQ8Xo9rAIA90uLcD-9Hq4hSEKBgtHwaDtrlQv8aP8wwgCOLGyenU2Up7E5uq6EL_Jh2g6v-14Go3WmcLLLRu3HShg2x_O4mryGTRxCcebxYz3yf2MYri1Ec7N6tiEtgVf4h868H20OdGfCfB0h9jaunuZT7ItIO2OAwTTxR0QMhVmKTNatFC6s5XvhTTlEuXzCtM1BS3x4bDpmcoqmbnIdLlCqyTEHQ4BetN9k-6Df7bkXlNhbmZ-2mShNxnURVsbNEW-2Z5Q9soOo81vqEcLM922L5Hspk-OA4hTVvYlz69vxhS1Ls_7T0_aibB3vFO8qUfF_ujgJYkvTrK5tyR-HYonZ6n2cmagBoeZAAg1PrvB-nEGQrrAgsg8C5wMjeHef4g78lP38rSTs7qEmCDJVcnPiMQISMhm4lp_u2abvrsFtYs9KjqpRtis7zWvIe1c2cjwMO7CCJhzrQMw-sQAghX_k1KnCD6A98rTY49giqwoXuO8aYaSzbLygwU9eJTtReon_wSu6jN-hHpyZk9TUqJSD8KbFETaS7lB7EExZcxmMFk9cEeHYfRu8afdpL10a0NAXuSLtnEYkPmGf38dipZm9ZFz4FB7ShofBQjCXsa5z0K_rTUs9KaNBJO_1ig
 ###
 
 @routeId=1004
@@ -54,7 +53,7 @@ DELETE {{Restaurants.API_HostAddress}}/api/restaurant/2/dishes
 POST {{Restaurants.API_HostAddress}}/api/user/register
 Content-Type: application/json
 {
-    "email": "user@test.com",
+    "email": "new@test.com",
     "password": "Abols1234!"
 }
 ###
@@ -62,7 +61,7 @@ Content-Type: application/json
 POST {{Restaurants.API_HostAddress}}/api/user/login
 Content-Type: application/json
 {
-    "email": "owner@test.com",
+    "email": "new@test.com",
     "password": "Abols1234!"
 }
 ###
@@ -84,7 +83,7 @@ Authorization: Bearer {{token}}
   "Name": "Owner restaurant",
   "Description": "test",
   "Category": "Indian",
-  "HasDelivery": true,
+  "HasDelivery": false,
   "ContactEmail": "info@test.com",
   "ContactNumber": "555-1234",
   "City": "New York",
@@ -94,10 +93,10 @@ Authorization: Bearer {{token}}
 
 ###
 
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+GET {{Restaurants.API_HostAddress}}/api/restaurants?pageNumber=1&pageSize=5&sortBy=Name&sortDirection=descending
 Authorization: Bearer {{token}}
 ###
 
-DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1008
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1013
 Authorization: Bearer {{token}}
 ###
