@@ -4,7 +4,7 @@ using MediatR;
 
 namespace Restaurants.Application.Dishes.Commands.CreateDish
 {
-    public class CreatDishCommand : IRequest
+    public class CreatDishCommand : IRequest<int>
     {
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;

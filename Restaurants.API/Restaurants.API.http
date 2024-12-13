@@ -1,23 +1,20 @@
 @Restaurants.API_HostAddress = https://localhost:7163
-
-GET {{Restaurants.API_HostAddress}}/api/restaurants
+@token = CfDJ8CjnroVz0RtDnKXVs0AaCZXxfo2ABcwgsRMCaIDEaXZ1d0Cuc2h5jppJY-YuLhB4sRAbmaJi3a26Jkfd4tVOXZuT3F3GRHlOFumXY086ukKCSW0YNJMY1Ws3hSESHPg2cvZgbfSmeDTFm6xqKMC_TnDR0Q9-uy46RUg2wVvD9PMexinvZCKOTKIXFdTXSor6ylFQHd8jR1Qj1xiNaqLbnysNOR0-0FTE2fcRbYqpfO6LbicFlBnlSaV3iZ582K5_0GSOIO2QTOHSkEGGuw37OGAraxum4EovzYcKN19dvXpZDkDqurs1KAAtXO1gHyxZWPI3TeqJzsTOR5JqIjTfnA-lO1AVgXTohhXd3XJcopgc0ctjs8m4PQN-fHCn27yhojztteLhrPjfobdgyOlgaSMHZOAj5yCWPllnm9Vj6pc6bxNv7as8JekQP_Qk-Dw8d0213XMU_Xxz1HA8xjWoCbLXMYLhvWPmlj5ggmjPbkeh1_4Hco0ZJGY2Wi_bCeeGEJqciwgkPqigUr6FrM8tJ11QxYTdI39PWcB3dcTN7ddWx003FeKXVSYcEwrY603b-9CqPcrJ2Yzn4aFspGdacg8K_zrrzTORsz4vqssqGWVQcc1jiyzmy_MDdyTtZV15VQOw15qVlWU-W9v3ZN_UEFnj_o-x5SPLj9sGifzVNFw2zSeEs3LnDXi81KwggWKyS4U5ieZOY5iQ9OcCyXmlp9_wwVqfqkr1zbuTlQ0yR1sNquyuU7z-nsZF8397Qi5z4Xzlv7feKZqQqtaFR4ldNoPzso9kC9gTQ5Q6DWkoZsGD
 
 ###
 
-
-
-@routeId=2
+@routeId=1004
 GET {{Restaurants.API_HostAddress}}/api/restaurants/{{routeId}}
-
+Authorization: Bearer {{token}}
 ###
 
 
 
-PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1002
+PATCH {{Restaurants.API_HostAddress}}/api/restaurants/1005
 Content-Type: application/json
-
+Authorization: Bearer {{token}}
 {
-  "Name": "Spicy delights",
+  "Name": "Spicy sd sdsd eee ",
   "Description": "anananan",
   "HasDelivery": true
 }
@@ -26,8 +23,8 @@ Content-Type: application/json
 
 
 
-@id=1007
-DELETE {{Restaurants.API_HostAddress}}/api/restaurants/{{id}}
+@id=1004
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1004
 
 ###
 
@@ -51,4 +48,56 @@ GET {{Restaurants.API_HostAddress}}/api/restaurant/{{restaurantId}}/dishes/{{dis
 
 DELETE {{Restaurants.API_HostAddress}}/api/restaurant/2/dishes
 
+###
+
+
+POST {{Restaurants.API_HostAddress}}/api/user/register
+Content-Type: application/json
+{
+    "email": "user@test.com",
+    "password": "Abols1234!"
+}
+###
+
+POST {{Restaurants.API_HostAddress}}/api/user/login
+Content-Type: application/json
+{
+    "email": "owner@test.com",
+    "password": "Abols1234!"
+}
+###
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+
+{
+   "Name": "Spicy delights",
+  "Description": "anananan",
+  "HasDelivery": true
+}
+
+###
+
+POST {{Restaurants.API_HostAddress}}/api/restaurants
+Content-Type: application/json
+Authorization: Bearer {{token}}
+{
+  "Name": "Owner restaurant",
+  "Description": "test",
+  "Category": "Indian",
+  "HasDelivery": true,
+  "ContactEmail": "info@test.com",
+  "ContactNumber": "555-1234",
+  "City": "New York",
+  "Street": "123 main str",
+  "PostalCode": "10-010"
+}
+
+###
+
+GET {{Restaurants.API_HostAddress}}/api/restaurants
+Authorization: Bearer {{token}}
+###
+
+DELETE {{Restaurants.API_HostAddress}}/api/restaurants/1008
+Authorization: Bearer {{token}}
 ###

@@ -10,6 +10,9 @@ using Restaurants.Application.Restaurants.Queries.GetRestaurantById;
 using Restaurants.Application.Restaurants.Commads.DeleteRestaurant;
 using RouteAttribute = Microsoft.AspNetCore.Mvc.RouteAttribute;
 using Restaurants.Application.Restaurants.Commands.EditRestaurant;
+using Microsoft.AspNetCore.Authorization;
+using Restaurants.Domain.Constants;
+using Restaurants.Infrastructure.Authorization;
 
 namespace Restaurants.API.Controllers
 {
@@ -22,6 +25,7 @@ namespace Restaurants.API.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize(Policy = PolicyNames.AtLeast2)]
         public async Task<ActionResult<IEnumerable<RestaurantDto>>> GetAll()
         {
             var restaurants = await mediator.Send(new GetAllRestaurantsQuery());
@@ -34,6 +38,7 @@ namespace Restaurants.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
+        [Authorize(Policy = PolicyNames.HasNationality)]
         public async Task<ActionResult<RestaurantDto?>> GetById([FromRoute] int id)
         {
             var restaurants = await mediator.Send(new GetRestaurantByIdQuery(id));
@@ -46,20 +51,23 @@ namespace Restaurants.API.Controllers
         /// <param name="command"></param>
         /// <returns></returns>
         [HttpPost]
+        [Authorize(Roles = UserRoles.Owner)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> CreateRestaurant(CreateRestaurantCommand command)
         {
-
+            User.IsInRole("");
             int id = await mediator.Send(command);
             return CreatedAtAction(nameof(GetById), new { id }, null);
         }
+
+
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteResturant([FromRoute] int id)
         {
             await mediator.Send(new DeleteRestaurantCommand(id));
             return NoContent();
-                
+
         }
 
         /// <summary>
@@ -69,6 +77,7 @@ namespace Restaurants.API.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpPatch("{id}")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         public async Task<IActionResult> EditRestaurant(EditRestaurantCommand command, [FromRoute] int id)
@@ -79,6 +88,6 @@ namespace Restaurants.API.Controllers
 
 
         }
-    }   
- 
+    }
+
 }
