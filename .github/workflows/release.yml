@@ -41,7 +41,7 @@ jobs:
           uses: Azure/webapps-deploy@v3.0.1
           with:
             app-name: 'janis-restaurants-api-dev'
-            publush-profile: ${{secrets.PUBLISH_PROFILE_DEV}}
+            publish-profile: ${{secrets.PUBLISH_PROFILE_DEV}}
 
     deploy-prod:
       runs-on: ubuntu-latest
@@ -55,5 +55,5 @@ jobs:
         uses: Azure/webapps-deploy@v3.0.1
         with:
           app-name: 'janis-restaurants-api-prod'
-          publush-profile: ${{secrets.PUBLISH_PROFILE_PROD}}
+          publish-profile: ${{secrets.PUBLISH_PROFILE_PROD}}
             
